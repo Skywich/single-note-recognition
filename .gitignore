@@ -1,0 +1,32 @@
+# Python 运行产生的缓存
+__pycache__/
+*.py[cod]
+*.pyo
+
+# demo 生成的测试音频、画图输出
+data/
+output/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 测试 / 覆盖率
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE 本地配置（PyCharm / VS Code）
+.idea/
+.vscode/
+
+# Windows / Office / 系统临时文件
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*.docx
+*.log
+
+# 个人学习笔记（不随仓库提交）
+docs/preprocess代码逐行详解.md

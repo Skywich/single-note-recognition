@@ -1,0 +1,5 @@
+# 本项目运行 preprocess.py 和 demo 所需的最小依赖
+# 安装：py -m pip install -r requirements.txt
+numpy>=1.20
+scipy>=1.7
+matplotlib>=3.5
