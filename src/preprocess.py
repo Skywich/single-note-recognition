@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+-*- coding: utf-8 -*-
 """
 preprocess.py —— 音频前期处理（模块 M1）
 

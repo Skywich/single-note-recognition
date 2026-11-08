@@ -19,7 +19,7 @@ import numpy as np
 from scipy.io import wavfile
 import matplotlib.pyplot as plt
 
-from preprocess import preprocess
+from preprocess_m import preprocess
 
 
 def make_tone(freq, duration, sr, amplitude=0.6):

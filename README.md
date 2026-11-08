@@ -2,7 +2,7 @@
 
 > **项目**：《信号与系统（1）》课程项目——基于频域匹配滤波的钢琴音阶识别
 > **模块**：M1 音频前期处理（读 wav → 幅度归一化 → 分帧）
-> **规范实现**：[src/preprocess.py](src/preprocess.py)（`src/preprocess_m.py` 是同接口的个人练习版，下游统一用 `preprocess.py`）
+> **规范实现**：[src/preprocess_m.py](src/preprocess_m.py)（`src/preprocess.py` 是同接口的参考实现，下游统一用 `preprocess_m.py`）
 > **接口版本**：v1.0（冻结）　**更新日期**：2026-11-08
 > **下游**：M2 时域分割、M3 Goertzel、M4 匹配滤波、M5 GUI
 > **配套文档**：[设计计划](docs/音频前期处理脚本计划.md)
@@ -24,7 +24,7 @@
 ## 2. 快速开始
 
 ```python
-from preprocess import preprocess
+from preprocess_m import preprocess
 
 ctx = preprocess("data/demo_tone.wav")          # 默认 25ms / 10ms
 ctx = preprocess("data/demo_tone.wav", frame_ms=25.0, hop_ms=10.0)
@@ -35,7 +35,7 @@ ctx = preprocess("data/demo_tone.wav", frame_ms=25.0, hop_ms=10.0)
 ```python
 import sys
 sys.path.insert(0, "src")
-from preprocess import preprocess
+from preprocess_m import preprocess
 ```
 
 或者直接在 `src` 目录下运行 Python。
@@ -44,8 +44,10 @@ from preprocess import preprocess
 
 ```powershell
 python src\demo_preprocess.py                  # 先生成 data/demo_tone.wav
-python src\preprocess.py data\demo_tone.wav    # 再单独跑预处理
+python src\preprocess_m.py data\demo_tone.wav  # 再单独跑预处理
 ```
+
+> `demo_preprocess.py` 内部调用的是参考实现 `preprocess.py`，只负责生成测试 wav 和画图；要验证下游统一使用的实现，请运行第二行的 `preprocess_m.py`。
 
 ---
 
@@ -177,7 +179,7 @@ import sys
 sys.path.insert(0, "src")   # 从项目根目录运行时需要
 
 import numpy as np
-from preprocess import preprocess
+from preprocess_m import preprocess
 
 ctx = preprocess("data/phrase.wav")
 
@@ -301,8 +303,8 @@ n_frames = 1                                   # L <  frame_len（补零）
 
 | 文件 | 作用 |
 |---|---|
-| [src/preprocess.py](src/preprocess.py) | 本模块的**规范实现**，下游统一 import 这个 |
-| [src/preprocess_m.py](src/preprocess_m.py) | 手工制作版；函数名、参数、5 个返回键一致，下游不需要用它 |
+| [src/preprocess_m.py](src/preprocess_m.py) | 本模块的**规范实现**，下游统一 import 这个 |
+| [src/preprocess.py](src/preprocess.py) | 同接口的参考实现；下游不需要用它 |
 | [src/demo_preprocess.py](src/demo_preprocess.py) | 生成测试 wav、跑通、4 项自检、画图 |
 | [requirements.txt](requirements.txt) | 依赖清单 |
 | [docs/音频前期处理脚本计划.md](docs/音频前期处理脚本计划.md) | 接口设计与算法依据 |
@@ -315,6 +317,6 @@ n_frames = 1                                   # L <  frame_len（补零）
 - 当前接口版本：**v1.0**，5 个键、归一化方式、帧数公式均已冻结。
 - 任何改动（键名、键数量、归一化方式、分帧规则）必须：
   1. 先更新 [docs/音频前期处理脚本计划.md](docs/音频前期处理脚本计划.md) 并升版本号；
-  2. 再改 `src/preprocess.py`；
+  2. 再改 `src/preprocess_m.py`；
   3. 通知 M2/M3/M4/M5。
 - 禁止“代码先改、文档后补”，否则下游会拿到不一致的契约。
