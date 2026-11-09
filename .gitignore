@@ -5,3 +5,6 @@
 .venv/*
 __pycache__/
 *.pyc
+
+#创建测试音频用的reaper工程
+./generate_test_audio/*
