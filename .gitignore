@@ -1,2 +1,5 @@
 # ide generate
-./idea
+idea/*
+
+#demo环境
+.venv/*
