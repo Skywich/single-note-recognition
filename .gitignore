@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 虚拟环境 / IDE
+.venv/
+.idea/
+.vscode/
+
+# 运行时生成的数据
+data/
+
+# M1 本地依赖（组内提供，不进 M3 分支）
+preprocess_m.py
+
+# OS
+.DS_Store
+Thumbs.db
