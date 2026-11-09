@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""《信号与系统（1）》课程项目最终成品框架 —— 频域匹配滤波钢琴音识别。
+r"""《信号与系统（1）》课程项目最终成品框架 —— 频域匹配滤波钢琴音识别。
 
 本文件是给 5 人小组合作使用的“成品骨架”：
   · 五个板块的公开函数/类已经按《信号与系统课程项目计划 v1.0.6》第 5 节
@@ -16,15 +15,19 @@
     板块 4  匹配滤波器与判决    match_filter_decision()   成员 4 / saku
     板块 5  GUI 与标准音数据    RecognitionGUI / launch_gui()  成员 5 / FeO
 
-运行方式：
-    python frame.py --check
+运行方式（Windows，项目内已带 Windows 虚拟环境 .venv）：
+    .venv\Scripts\python.exe frame.py --check
         打印五个板块的接口清单和填充进度。
 
-    python frame.py --templates data/templates --audio data/test.wav
+    .venv\Scripts\python.exe frame.py --templates data\templates --audio data\test.wav
         按最终成品流程跑一遍：模板 → 预处理 → 分割 → Goertzel → 判决。
 
-    python frame.py --gui
+    .venv\Scripts\python.exe frame.py --gui
         启动最终 GUI（待成员 5 实现）。
+
+也可以先激活虚拟环境：
+    .venv\Scripts\activate.bat
+    python frame.py --check
 
 依赖：numpy。GUI 建议使用标准库 tkinter（无需额外安装）。
 
@@ -46,7 +49,7 @@ except ImportError as exc:  # pragma: no cover
     raise SystemExit(
         "frame.py 需要 numpy。\n"
         "请先安装：python -m pip install numpy\n"
-        "本仓库内也可直接使用：.venv/bin/python frame.py --check"
+        "本仓库内也可直接使用：.venv\\Scripts\\python.exe frame.py --check"
     ) from exc
 
 
@@ -556,8 +559,8 @@ def _print_check() -> None:
         "\n填充顺序建议：1 → 2 → 3 → 4 → 5。\n"
         "每个函数的 docstring 都写了输入、输出、实现要点和验收标准；\n"
         "填完后用下面命令联调：\n"
-        "    python frame.py --templates data/templates --audio data/test.wav\n"
-        "    python frame.py --gui\n"
+        "    .venv\\Scripts\\python.exe frame.py --templates data\\templates --audio data\\test.wav\n"
+        "    .venv\\Scripts\\python.exe frame.py --gui\n"
         "\n注意：模板标准音与测试音频必须来自不同 take（计划 4.5 节）。"
     )
     print("=" * 78)
@@ -622,7 +625,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     except NotImplementedError as exc:
         print(f"[未实现] {exc}", file=sys.stderr)
         print(
-            "请按 docstring 完成对应板块后重试；接口清单见 `python frame.py --check`。",
+            "请按 docstring 完成对应板块后重试；接口清单见 `.venv\\Scripts\\python.exe frame.py --check`。",
             file=sys.stderr,
         )
         return 2

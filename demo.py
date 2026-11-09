@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""基于频域匹配滤波的钢琴单音 / 乐句识别 —— 可完整运行的 Demo。
+r"""基于频域匹配滤波的钢琴单音 / 乐句识别 —— 可完整运行的 Demo。
 
 复现论文：
     赵凌览, 李晓峰. 基于频域匹配滤波的音频信号分析与识别[J].
@@ -17,11 +16,15 @@
     calc_goertzel_spectrum(note_signal, sr, target_freqs) -> np.ndarray
     match_filter_decision(S_i, templates) -> (best_note_idx, max_corr_value)
 
-运行：
-    python demo.py                         # 内置合成音频，跑单音 + 乐句完整演示
-    python demo.py --save-audio demo_audio # 同时导出合成 WAV，便于试听/写报告
-    python demo.py --wav my_phrase.wav     # 识别自己的 WAV
-    python demo.py --wav my.wav --templates data/templates  # 用自己录的 26 个标准音
+运行（Windows，项目内已带 Windows 虚拟环境 .venv）：
+    .venv\Scripts\python.exe demo.py
+    .venv\Scripts\python.exe demo.py --save-audio demo_audio
+    .venv\Scripts\python.exe demo.py --wav my_phrase.wav
+    .venv\Scripts\python.exe demo.py --wav my.wav --templates data\templates
+
+也可以先激活虚拟环境：
+    .venv\Scripts\activate.bat
+    python demo.py
 
 依赖：numpy。WAV 读取使用 Python 标准库解析，支持 PCM 8/16/24/32 bit 与 IEEE float。
 
@@ -46,7 +49,7 @@ except ImportError as exc:  # pragma: no cover - 仅负责给出友好提示
     raise SystemExit(
         "demo.py 需要 numpy。\n"
         "请先安装：python -m pip install numpy\n"
-        "本仓库内也可直接使用：.venv/bin/python demo.py"
+        "本仓库内也可直接使用：.venv\\Scripts\\python.exe demo.py"
     ) from exc
 
 
@@ -1020,11 +1023,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         description="频域匹配滤波钢琴音识别 Demo（Goertzel + L2 归一化 + 相关判决）",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
-            "示例：\n"
-            "  python demo.py\n"
-            "  python demo.py --save-audio demo_audio\n"
-            "  python demo.py --wav my_phrase.wav\n"
-            "  python demo.py --wav my.wav --templates data/templates\n"
+            "示例（Windows）：\n"
+            "  .venv\\Scripts\\python.exe demo.py\n"
+            "  .venv\\Scripts\\python.exe demo.py --save-audio demo_audio\n"
+            "  .venv\\Scripts\\python.exe demo.py --wav my_phrase.wav\n"
+            "  .venv\\Scripts\\python.exe demo.py --wav my.wav --templates data\\templates\n"
         ),
     )
     parser.add_argument("--wav", type=Path, help="待识别的 WAV；省略则运行内置单音+乐句自检")

@@ -1,5 +1,7 @@
 # ide generate
-idea/*
+.idea/*
 
 #demo环境
 .venv/*
+__pycache__/
+*.pyc
